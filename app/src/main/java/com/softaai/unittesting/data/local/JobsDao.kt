@@ -16,7 +16,7 @@ interface JobsDao {
     @Query("DELETE FROM ${JobsItemApiResponse.TABLE_NAME}")
     suspend fun deleteAllJobsItem()
 
-    @Query("SELECT * FROM ${JobsItemApiResponse.TABLE_NAME} WHERE ID = :jobId")
+    @Query("SELECT * FROM ${JobsItemApiResponse.TABLE_NAME} WHERE JOBID = :jobId")
     fun getJobItemByJobId(jobId: Int): Flow<JobsItemApiResponse>
 
     @Query("SELECT * FROM ${JobsItemApiResponse.TABLE_NAME}")

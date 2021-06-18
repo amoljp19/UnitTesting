@@ -55,6 +55,7 @@ class JobsDaoTest {
 
         dbJobItem = mDatabase.getJobsDao().getJobItemByJobId(2).first()
         assertThat(dbJobItem, equalTo(jobs[1]))
+
     }
 
 
