@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.softaai.unittesting.model.JobsItemApiResponse
+import com.softaai.unittesting.model.LoginUser
 
 
-
-@Database(entities = [JobsItemApiResponse::class], version = 1, exportSchema = false)
+@Database(entities = [LoginUser::class, JobsItemApiResponse::class], version = 1, exportSchema = false)
 abstract class JobsDatabase : RoomDatabase() {
+
+    abstract fun getLoginUserDao() : LoginUserDao
 
     abstract fun getJobsDao() : JobsDao
 
