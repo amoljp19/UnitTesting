@@ -1,11 +1,17 @@
 package com.softaai.unittesting.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.softaai.unittesting.model.JobsItemApiResponse.Companion.TABLE_NAME
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
+@Entity(tableName = TABLE_NAME)
 @JsonClass(generateAdapter = true)
-data class JobsApiResponseItem(
+data class JobsItemApiResponse(
+    @PrimaryKey
+    var id: Int? = 0,
     @Json(name = "company")
     val company: String,
     @Json(name = "company_logo")
@@ -19,7 +25,7 @@ data class JobsApiResponseItem(
     @Json(name = "how_to_apply")
     val howToApply: String,
     @Json(name = "id")
-    val id: String,
+    val jobId: String,
     @Json(name = "location")
     val location: String,
     @Json(name = "title")
@@ -28,4 +34,8 @@ data class JobsApiResponseItem(
     val type: String,
     @Json(name = "url")
     val url: String
-)
+){
+    companion object {
+        const val TABLE_NAME = "jobs_api_response_item"
+    }
+}
