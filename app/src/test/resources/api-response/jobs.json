@@ -1,0 +1,41 @@
+[
+  {
+    "id": "id 1",
+    "type": "type 1",
+    "url": "url 1",
+    "created_at": "createdAt 1",
+    "company": "company 1",
+    "company_url": "companyUrl 1",
+    "location": "location 1",
+    "title": "title 1",
+    "description": "description 1",
+    "how_to_apply": "howToApply 1",
+    "company_logo": "companyLogo 1"
+  },
+  {
+    "id": "id 2",
+    "type": "type 2",
+    "url": "url 2",
+    "created_at": "createdAt 2",
+    "company": "company 2",
+    "company_url": "companyUrl 2",
+    "location": "location 2",
+    "title": "title 2",
+    "description": "description 2",
+    "how_to_apply": "howToApply 2",
+    "company_logo": "companyLogo 2"
+  },
+  {
+    "id": "id 3",
+    "type": "type 3",
+    "url": "url 3",
+    "created_at": "createdAt 3",
+    "company": "company 3",
+    "company_url": "companyUrl 3",
+    "location": "location 3",
+    "title": "title 3",
+    "description": "description 3",
+    "how_to_apply": "howToApply 3",
+    "company_logo": "companyLogo 3"
+  }
+]

@@ -4,6 +4,7 @@ import androidx.annotation.MainThread
 import com.softaai.unittesting.data.local.JobsDao
 import com.softaai.unittesting.data.remote.JobsApiService
 import com.softaai.unittesting.data.remote.Resource
+import com.softaai.unittesting.model.JobsApiResponse
 import com.softaai.unittesting.model.JobsItemApiResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.distinctUntilChanged
