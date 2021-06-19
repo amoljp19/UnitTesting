@@ -11,7 +11,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class JobsItemApiResponse(
     @PrimaryKey
-    var jobId: Int? = 0,
+    var jobId: Int?,
     @Json(name = "company")
     val company: String,
     @Json(name = "company_logo")

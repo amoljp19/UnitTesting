@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface JobsDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addJobsItem(jobsItem: List<JobsItemApiResponse>?)
 
     @Query("DELETE FROM ${JobsItemApiResponse.TABLE_NAME}")

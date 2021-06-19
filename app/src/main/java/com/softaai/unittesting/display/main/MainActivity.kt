@@ -1,13 +1,14 @@
 package com.softaai.unittesting.display.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.softaai.unittesting.R
 import com.softaai.unittesting.data.remote.State
+import com.softaai.unittesting.databinding.ActivityMainBinding
 import com.softaai.unittesting.display.main.adapter.JobListAdapter
 import com.softaai.unittesting.model.JobsItemApiResponse
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,12 +18,15 @@ class MainActivity : AppCompatActivity() {
 
     val mViewModel: MainViewModel by viewModels()
 
-    lateinit var recyclerView : RecyclerView
-    lateinit var adapter : JobListAdapter
+    lateinit var mViewBinding: ActivityMainBinding
+
+    lateinit var recyclerView: RecyclerView
+    lateinit var adapter: JobListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mViewBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mViewBinding.root)
 
         getAllJobs()
 
@@ -33,11 +37,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        mViewModel.jobsLiveData.value?.let { currentState ->
-            if (!currentState.isSuccessful()) {
-                getAllJobs()
-            }
-        }
         observeJobs()
     }
 
@@ -47,7 +46,11 @@ class MainActivity : AppCompatActivity() {
     private fun observeJobs() {
         mViewModel.jobsLiveData.observe(this) { state ->
             when (state) {
-                is State.Loading -> Toast.makeText(applicationContext, "Loading...", Toast.LENGTH_SHORT).show()
+                is State.Loading -> Toast.makeText(
+                    applicationContext,
+                    "Loading...",
+                    Toast.LENGTH_SHORT
+                ).show()
                 is State.Success -> {
                     if (state.data.isNotEmpty()) {
                         adapter.submitList(state.data.toMutableList())
@@ -55,7 +58,8 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(applicationContext, " " + state.data, Toast.LENGTH_SHORT).show()
                 }
                 is State.Error -> {
-                    Toast.makeText(applicationContext, " " + state.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, " " + state.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         }
@@ -69,5 +73,4 @@ class MainActivity : AppCompatActivity() {
         }
         //ToDo open detail fragment need to implement
     }
-
 }

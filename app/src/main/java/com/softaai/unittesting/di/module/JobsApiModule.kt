@@ -1,7 +1,7 @@
 package com.softaai.unittesting.di.module
 
 import com.softaai.unittesting.data.remote.JobsApiService
-import com.softaai.unittesting.data.remote.RequestInterceptor
+import com.softaai.unittesting.data.remote.MockInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
@@ -20,7 +20,7 @@ class JobsApiModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient() = OkHttpClient.Builder().addInterceptor(RequestInterceptor()).build();
+    fun provideOkHttpClient() = OkHttpClient.Builder().addInterceptor(MockInterceptor()).build();
 
 
     @Singleton
