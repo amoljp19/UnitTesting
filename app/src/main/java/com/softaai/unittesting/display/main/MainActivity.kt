@@ -1,10 +1,9 @@
-package com.softaai.unittesting.view
+package com.softaai.unittesting.display.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.softaai.unittesting.R
-import com.softaai.unittesting.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

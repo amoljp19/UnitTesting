@@ -1,4 +1,4 @@
-package com.softaai.unittesting.viewmodel
+package com.softaai.unittesting.display.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
