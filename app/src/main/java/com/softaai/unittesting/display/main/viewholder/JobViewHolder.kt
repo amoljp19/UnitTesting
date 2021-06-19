@@ -1,4 +1,4 @@
-package com.softaai.unittesting.display.viewholder
+package com.softaai.unittesting.display.main.viewholder
 
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
