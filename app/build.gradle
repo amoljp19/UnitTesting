@@ -86,6 +86,9 @@ dependencies {
     // multidex
     implementation "androidx.multidex:multidex:2.0.1"
 
+    // Coil
+    implementation("io.coil-kt:coil:1.1.1")
+
 
     testImplementation 'junit:junit:4.13.2'
 
