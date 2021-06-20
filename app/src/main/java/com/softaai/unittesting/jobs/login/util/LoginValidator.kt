@@ -2,7 +2,7 @@ package com.softaai.unittesting.jobs.login.util
 
 import java.util.regex.Pattern
 
-class LoginValidator {
+object LoginValidator {
 
     private val EMAIL: Pattern = Pattern.compile(
         "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$",
