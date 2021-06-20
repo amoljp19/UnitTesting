@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softaai.unittesting.R
 import com.softaai.unittesting.data.remote.State
 import com.softaai.unittesting.databinding.ActivityMainBinding
+import com.softaai.unittesting.display.details.JobDetailsActivity
 import com.softaai.unittesting.display.main.adapter.JobListAdapter
 import com.softaai.unittesting.model.JobsItemApiResponse
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,6 +72,8 @@ class MainActivity : AppCompatActivity() {
                 .show()
             return
         }
-        //ToDo open detail fragment need to implement
+
+        val intent = JobDetailsActivity.getStartIntent(this, jobId)
+        startActivity(intent)
     }
 }

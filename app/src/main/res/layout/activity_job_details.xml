@@ -48,7 +48,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
-        android:id="@+id/articleContent"
+        android:id="@+id/jobContent"
         layout="@layout/content_job_details" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
