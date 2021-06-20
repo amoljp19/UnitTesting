@@ -1,4 +1,4 @@
-package com.softaai.unittesting.display.main
+package com.softaai.unittesting.jobs.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

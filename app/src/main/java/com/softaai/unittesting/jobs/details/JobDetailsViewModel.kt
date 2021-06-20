@@ -1,4 +1,4 @@
-package com.softaai.unittesting.display.details
+package com.softaai.unittesting.jobs.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

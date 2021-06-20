@@ -1,4 +1,4 @@
-package com.softaai.unittesting.viewmodel
+package com.softaai.unittesting.jobs
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi

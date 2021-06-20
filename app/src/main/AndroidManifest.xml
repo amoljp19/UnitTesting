@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UnitTesting">
-        <activity android:name=".display.main.MainActivity">
+        <activity android:name=".jobs.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".display.details.JobDetailsActivity"
+            android:name=".jobs.details.JobDetailsActivity"
             android:theme="@style/Theme.UnitTesting.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

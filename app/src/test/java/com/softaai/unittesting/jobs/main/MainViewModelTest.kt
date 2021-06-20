@@ -1,11 +1,11 @@
-package com.softaai.unittesting.viewmodel
+package com.softaai.unittesting.jobs.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.softaai.unittesting.data.remote.Resource
 import com.softaai.unittesting.data.remote.State
 import com.softaai.unittesting.data.repository.JobsRepository
-import com.softaai.unittesting.display.main.MainViewModel
+import com.softaai.unittesting.jobs.CoroutineTestRule
 import com.softaai.unittesting.model.JobsItemApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow

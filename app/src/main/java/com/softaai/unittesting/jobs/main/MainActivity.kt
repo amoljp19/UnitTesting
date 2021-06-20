@@ -1,4 +1,4 @@
-package com.softaai.unittesting.display.main
+package com.softaai.unittesting.jobs.main
 
 import android.os.Bundle
 import android.widget.ImageView
@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.softaai.unittesting.R
 import com.softaai.unittesting.data.remote.State
 import com.softaai.unittesting.databinding.ActivityMainBinding
-import com.softaai.unittesting.display.details.JobDetailsActivity
-import com.softaai.unittesting.display.main.adapter.JobListAdapter
+import com.softaai.unittesting.jobs.details.JobDetailsActivity
+import com.softaai.unittesting.jobs.main.adapter.JobListAdapter
 import com.softaai.unittesting.model.JobsItemApiResponse
 import dagger.hilt.android.AndroidEntryPoint
 

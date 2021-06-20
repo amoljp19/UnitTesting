@@ -1,4 +1,4 @@
-package com.softaai.unittesting.display.main.adapter
+package com.softaai.unittesting.jobs.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.softaai.unittesting.databinding.ItemJobBinding
-import com.softaai.unittesting.display.main.viewholder.JobViewHolder
+import com.softaai.unittesting.jobs.main.viewholder.JobViewHolder
 import com.softaai.unittesting.model.JobsItemApiResponse
 
 

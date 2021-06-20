@@ -1,4 +1,4 @@
-package com.softaai.unittesting.display.details
+package com.softaai.unittesting.jobs.details
 
 import android.content.Context
 import android.content.Intent
@@ -64,7 +64,6 @@ class JobDetailsActivity : AppCompatActivity() {
             )
         }
     }
-
 
 
 }
