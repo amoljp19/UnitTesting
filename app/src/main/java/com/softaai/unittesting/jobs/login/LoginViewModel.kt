@@ -7,17 +7,21 @@ import com.softaai.unittesting.data.repository.LoginUserRepository
 import com.softaai.unittesting.jobs.login.util.LoginDataState
 import com.softaai.unittesting.jobs.login.util.LoginValidator
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUserRepository: LoginUserRepository) : ViewModel() {
+class LoginViewModel @Inject constructor(private val loginUserRepository: LoginUserRepository) :
+    ViewModel() {
+
+    private lateinit var map: HashMap<String, String>
 
     val loginStateLiveData = MutableLiveData<LoginDataState>()
 
 
-    fun saveLoginUser(){
+    fun saveLoginUser() {
         viewModelScope.launch {
             loginUserRepository.saveLoginUser()
         }
@@ -26,7 +30,29 @@ class LoginViewModel @Inject constructor(private val loginUserRepository: LoginU
 
     fun doLogin(userEmail: String, password: String) {
         if (areUserCredentialsValid(userEmail, password)) {
-           //Todo on true go to main activity, on false show error
+            map = HashMap()
+            map[USERNAME] = userEmail
+            map[PASSWORD] = password
+            viewModelScope.launch {
+
+                runCatching {
+                    loginUserRepository.getLoginUserByCredentials(userEmail, password)
+                }.onSuccess {
+
+                    it.collect {
+
+                        if (it != null) {
+                            loginStateLiveData.postValue(LoginDataState.Success(it))
+                        } else {
+                            loginStateLiveData.postValue(LoginDataState.Error("Invalid credentials..!!!, Please enter correct coredentials."))
+                        }
+                    }
+
+                }.onFailure {
+                    loginStateLiveData.postValue(LoginDataState.Error("Request Failed,Please try later."))
+                }
+            }
+
         }
     }
 
@@ -42,6 +68,12 @@ class LoginViewModel @Inject constructor(private val loginUserRepository: LoginU
             loginStateLiveData.postValue(LoginDataState.ValidCredentialsState)
             true
         }
+    }
+
+
+    companion object {
+        const val USERNAME = "email"
+        const val PASSWORD = "password"
     }
 
 }
