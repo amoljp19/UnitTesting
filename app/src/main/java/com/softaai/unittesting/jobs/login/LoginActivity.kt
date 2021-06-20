@@ -8,8 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
-import com.softaai.unittesting.data.remote.State
 import com.softaai.unittesting.databinding.ActivityLoginBinding
 import com.softaai.unittesting.jobs.login.util.LoginDataState
 import com.softaai.unittesting.jobs.main.MainActivity
@@ -32,7 +30,10 @@ class LoginActivity : AppCompatActivity() {
         mViewBinding.login.setOnClickListener {
             hideKeyboard(mViewBinding.login)
 
-            mViewModel.doLogin(mViewBinding.inputUsername.text.toString(), mViewBinding.inputPassword.text.toString())
+            mViewModel.doLogin(
+                mViewBinding.inputUsername.text.toString(),
+                mViewBinding.inputPassword.text.toString()
+            )
         }
     }
 
@@ -43,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
                 is LoginDataState.Success -> {
                     mViewBinding.loading.visibility = View.GONE
                     Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
+                    showMainScreen()
                 }
                 is LoginDataState.Error -> {
                     mViewBinding.loading.visibility = View.GONE
