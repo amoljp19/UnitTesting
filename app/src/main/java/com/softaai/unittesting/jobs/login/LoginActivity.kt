@@ -25,6 +25,8 @@ class LoginActivity : AppCompatActivity() {
         mViewBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(mViewBinding.root)
 
+        mViewModel.saveLoginUser()
+
         observeLoginStates()
 
         mViewBinding.login.setOnClickListener {

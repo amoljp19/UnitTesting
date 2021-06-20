@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = LoginUser.TABLE_NAME)
 data class LoginUser(
     @PrimaryKey
-    var id: Int? = 0,
+    var id: Int?,
     val username: String,
     val password: String
 ){

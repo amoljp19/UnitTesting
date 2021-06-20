@@ -2,13 +2,27 @@ package com.softaai.unittesting.jobs.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.softaai.unittesting.data.repository.LoginUserRepository
 import com.softaai.unittesting.jobs.login.util.LoginDataState
 import com.softaai.unittesting.jobs.login.util.LoginValidator
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class LoginViewModel : ViewModel() {
+
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val loginUserRepository: LoginUserRepository) : ViewModel() {
 
     val loginStateLiveData = MutableLiveData<LoginDataState>()
 
+
+    fun saveLoginUser(){
+        viewModelScope.launch {
+            loginUserRepository.saveLoginUser()
+        }
+
+    }
 
     fun doLogin(userEmail: String, password: String) {
         if (areUserCredentialsValid(userEmail, password)) {

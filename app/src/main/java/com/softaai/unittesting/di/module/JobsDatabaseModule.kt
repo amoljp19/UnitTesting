@@ -19,5 +19,9 @@ class JobsDatabaseModule {
 
     @Singleton
     @Provides
+    fun provideLoginUserDao(database: JobsDatabase) = database.getLoginUserDao()
+
+    @Singleton
+    @Provides
     fun provideJobsDao(database: JobsDatabase) = database.getJobsDao()
 }
