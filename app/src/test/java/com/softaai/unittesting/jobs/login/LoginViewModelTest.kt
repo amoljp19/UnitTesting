@@ -2,15 +2,12 @@ package com.softaai.unittesting.jobs.login
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.softaai.unittesting.data.remote.Resource
 import com.softaai.unittesting.data.repository.LoginUserRepository
 import com.softaai.unittesting.jobs.CoroutineTestRule
 import com.softaai.unittesting.jobs.login.util.LoginDataState
 import com.softaai.unittesting.jobs.login.util.LoginValidator
-import com.softaai.unittesting.model.JobsItemApiResponse
 import com.softaai.unittesting.model.LoginUser
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
@@ -23,13 +20,13 @@ import org.junit.runners.JUnit4
 import org.mockito.ArgumentMatchers
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mock
+import org.mockito.MockedStatic
 import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import org.powermock.core.classloader.annotations.PrepareForTest
-import org.powermock.modules.junit4.PowerMockRunner
 
 //@RunWith(PowerMockRunner::class)
 @RunWith(JUnit4::class)
@@ -41,8 +38,7 @@ class LoginViewModelTest {
     @Mock
     private lateinit var loginUserRepository: LoginUserRepository
 
-    @Mock
-    private lateinit var loginUser: LoginUser
+    private lateinit var loginValidator: MockedStatic<LoginValidator>
 
     private val mockObserverForStates = mock<Observer<LoginDataState>>()
 
@@ -59,7 +55,7 @@ class LoginViewModelTest {
     @Before
     fun before() {
         MockitoAnnotations.initMocks(this)
-        mockStatic(LoginValidator::class.java)
+        loginValidator = mockStatic(LoginValidator::class.java)
 
         loginViewModel = LoginViewModel(loginUserRepository)
 
@@ -100,14 +96,19 @@ class LoginViewModelTest {
 
     @Test
     fun testIfEmailAndPasswordValid_DoLogin() {
-         // Arrange
+        // Arrange
         `when`(LoginValidator.isEmailValid(anyString())).thenAnswer { true }
         `when`(LoginValidator.isPasswordValid(anyString())).thenAnswer { true }
 
         val data = mock<LoginUser>()
 
         runBlockingTest {
-            whenever(loginUserRepository.getLoginUserByCredentials(anyString(), anyString())) doReturn flowOf(
+            whenever(
+                loginUserRepository.getLoginUserByCredentials(
+                    anyString(),
+                    anyString()
+                )
+            ) doReturn flowOf(
                 data
             )
         }
@@ -133,7 +134,12 @@ class LoginViewModelTest {
         //val data = mock<LoginUser>()
 
         runBlockingTest {
-            whenever(loginUserRepository.getLoginUserByCredentials(anyString(), anyString())) doReturn flowOf(
+            whenever(
+                loginUserRepository.getLoginUserByCredentials(
+                    anyString(),
+                    anyString()
+                )
+            ) doReturn flowOf(
                 null
             )
         }
@@ -159,7 +165,12 @@ class LoginViewModelTest {
         val error = RuntimeException()
 
         runBlocking {
-            `when`(loginUserRepository.getLoginUserByCredentials(anyString(), anyString())).thenThrow(
+            `when`(
+                loginUserRepository.getLoginUserByCredentials(
+                    anyString(),
+                    anyString()
+                )
+            ).thenThrow(
                 error
             )
         }
@@ -175,9 +186,11 @@ class LoginViewModelTest {
         verifyNoMoreInteractions(mockObserverForStates)
     }
 
+
     @After
     @Throws(Exception::class)
     fun tearDownClass() {
+        loginValidator.close()
         loginViewModel.loginStateLiveData.removeObserver(mockObserverForStates)
     }
 
