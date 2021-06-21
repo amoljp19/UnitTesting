@@ -187,6 +187,21 @@ class LoginViewModelTest {
     }
 
 
+    @Test
+    fun testSaveLoginUser(){
+
+            runBlocking {
+
+                `when`(loginUserRepository.saveLoginUser()).thenAnswer { listOf<LoginUser>() }
+
+                loginViewModel.saveLoginUser()
+
+                verify(loginUserRepository, times(1)).saveLoginUser()
+            }
+
+    }
+
+
     @After
     @Throws(Exception::class)
     fun tearDownClass() {
