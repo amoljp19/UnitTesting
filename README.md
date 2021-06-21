@@ -1,6 +1,6 @@
 # UnitTesting
 
-User below Login Credentials 
+Use below Login Credentials 
 
  1. username - amol@gmail.com, password - 123456
  
