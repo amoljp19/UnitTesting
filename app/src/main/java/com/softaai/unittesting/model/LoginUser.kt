@@ -10,7 +10,7 @@ data class LoginUser(
     var id: Int?,
     val username: String,
     val password: String
-){
+) {
     companion object {
         const val TABLE_NAME = "login_user"
     }

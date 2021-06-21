@@ -21,17 +21,22 @@ class DefaultJobsRepository @Inject constructor(
 ) : JobsRepository {
 
     override fun getAllJobs(): Flow<Resource<List<JobsItemApiResponse>>> {
-        return object : NetworkBoundRepository<List<JobsItemApiResponse>, List<JobsItemApiResponse>>() {
+        return object :
+            NetworkBoundRepository<List<JobsItemApiResponse>, List<JobsItemApiResponse>>() {
 
-            override suspend fun saveRemoteData(response: List<JobsItemApiResponse>) = jobsDao.addJobsItem(response)
+            override suspend fun saveRemoteData(response: List<JobsItemApiResponse>) =
+                jobsDao.addJobsItem(response)
 
-            override fun fetchFromLocal(): Flow<List<JobsItemApiResponse>> = jobsDao.getAllJobsItem()
+            override fun fetchFromLocal(): Flow<List<JobsItemApiResponse>> =
+                jobsDao.getAllJobsItem()
 
-            override suspend fun fetchFromRemote(): Response<List<JobsItemApiResponse>> = jobsApiService.getJobs()
+            override suspend fun fetchFromRemote(): Response<List<JobsItemApiResponse>> =
+                jobsApiService.getJobs()
         }.asFlow()
     }
 
 
     @MainThread
-    override fun getJobItemById(jobId: Int): Flow<JobsItemApiResponse> = jobsDao.getJobItemByJobId(jobId).distinctUntilChanged()
+    override fun getJobItemById(jobId: Int): Flow<JobsItemApiResponse> =
+        jobsDao.getJobItemByJobId(jobId).distinctUntilChanged()
 }

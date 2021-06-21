@@ -27,10 +27,16 @@ class JobListAdapter(
 
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<JobsItemApiResponse>() {
-            override fun areItemsTheSame(oldItem: JobsItemApiResponse, newItem: JobsItemApiResponse): Boolean =
+            override fun areItemsTheSame(
+                oldItem: JobsItemApiResponse,
+                newItem: JobsItemApiResponse
+            ): Boolean =
                 oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: JobsItemApiResponse, newItem: JobsItemApiResponse): Boolean =
+            override fun areContentsTheSame(
+                oldItem: JobsItemApiResponse,
+                newItem: JobsItemApiResponse
+            ): Boolean =
                 oldItem == newItem
         }
     }

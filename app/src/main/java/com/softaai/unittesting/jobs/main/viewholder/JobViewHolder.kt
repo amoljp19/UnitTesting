@@ -11,7 +11,10 @@ import com.softaai.unittesting.model.JobsItemApiResponse
 class JobViewHolder(private val binding: ItemJobBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(jobItem: JobsItemApiResponse, onItemClicked: (JobsItemApiResponse, ImageView) -> Unit) {
+    fun bind(
+        jobItem: JobsItemApiResponse,
+        onItemClicked: (JobsItemApiResponse, ImageView) -> Unit
+    ) {
         binding.title.text = jobItem.title
         binding.company.text = jobItem.company
         binding.location.text = jobItem.location

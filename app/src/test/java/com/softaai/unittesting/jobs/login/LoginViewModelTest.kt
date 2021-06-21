@@ -9,7 +9,6 @@ import com.softaai.unittesting.jobs.login.util.LoginValidator
 import com.softaai.unittesting.model.LoginUser
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.After
 import org.junit.Before

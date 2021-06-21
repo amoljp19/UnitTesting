@@ -43,8 +43,8 @@ class LoginUserDaoTest {
 
 
     fun getMockLoginUser() = listOf(
-        LoginUser(1,"amol", "amol"),
+        LoginUser(1, "amol", "amol"),
         LoginUser(2, "abcd", "1234"),
-        LoginUser(3,"india", "india")
+        LoginUser(3, "india", "india")
     )
 }

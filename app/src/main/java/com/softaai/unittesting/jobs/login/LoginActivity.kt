@@ -49,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
                     showMainScreen()
                 }
                 is LoginDataState.Error -> {
-                     mViewBinding.loading.visibility = View.GONE
+                    mViewBinding.loading.visibility = View.GONE
                     Toast.makeText(this, dataState.message, Toast.LENGTH_SHORT).show()
                 }
                 is LoginDataState.ValidCredentialsState -> {

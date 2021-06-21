@@ -8,9 +8,9 @@ import com.softaai.unittesting.data.remote.State
 import com.softaai.unittesting.data.repository.JobsRepository
 import com.softaai.unittesting.model.JobsItemApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

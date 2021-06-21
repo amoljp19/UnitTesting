@@ -1,8 +1,11 @@
 package com.softaai.unittesting.data.remote
 
 import com.softaai.unittesting.BuildConfig
-import okhttp3.*
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.Protocol
+import okhttp3.Response
+import okhttp3.ResponseBody
 
 class MockInterceptor : Interceptor {
 
@@ -22,13 +25,17 @@ class MockInterceptor : Interceptor {
                 .body(
                     ResponseBody.create(
                         "application/json".toMediaTypeOrNull(),
-                        responseString.toByteArray()))
+                        responseString.toByteArray()
+                    )
+                )
                 .addHeader("content-type", "application/json")
                 .build()
         } else {
             //just to be on safe side.
-            throw IllegalAccessError("MockInterceptor is only meant for Testing Purposes and " +
-                    "bound to be used only with DEBUG mode")
+            throw IllegalAccessError(
+                "MockInterceptor is only meant for Testing Purposes and " +
+                        "bound to be used only with DEBUG mode"
+            )
         }
     }
 }

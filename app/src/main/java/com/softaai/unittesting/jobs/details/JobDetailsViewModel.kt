@@ -35,6 +35,4 @@ class JobDetailsViewModel @AssistedInject constructor(
     }
 
 
-
-
 }

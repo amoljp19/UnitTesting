@@ -34,7 +34,7 @@ data class JobsItemApiResponse(
     val type: String,
     @Json(name = "url")
     val url: String
-){
+) {
     companion object {
         const val TABLE_NAME = "jobs_api_response_item"
     }
