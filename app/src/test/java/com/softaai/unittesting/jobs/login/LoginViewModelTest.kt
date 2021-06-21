@@ -123,6 +123,32 @@ class LoginViewModelTest {
         verifyNoMoreInteractions(mockObserverForStates)
     }
 
+
+    @Test
+    fun testIfEmailAndPasswordValid_ButDoLogin_ForInvalidLoginUser() {
+        // Arrange
+        `when`(LoginValidator.isEmailValid(anyString())).thenAnswer { true }
+        `when`(LoginValidator.isPasswordValid(anyString())).thenAnswer { true }
+
+        //val data = mock<LoginUser>()
+
+        runBlockingTest {
+            whenever(loginUserRepository.getLoginUserByCredentials(anyString(), anyString())) doReturn flowOf(
+                null
+            )
+        }
+
+        //Act
+        loginViewModel.doLogin(EMAIL, PASSWORD)
+
+        //Assert
+        verify(mockObserverForStates).onChanged(LoginDataState.ValidCredentialsState)
+        verify(
+            mockObserverForStates, times(2)
+        ).onChanged(LoginDataState.Success(ArgumentMatchers.any()))
+        verifyNoMoreInteractions(mockObserverForStates)
+    }
+
     @Test
     fun testThrowError_OnLoginFailed() {
         //Arrange
