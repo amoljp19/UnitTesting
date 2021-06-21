@@ -16,8 +16,6 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(private val loginUserRepository: LoginUserRepository) :
     ViewModel() {
 
-    private lateinit var map: HashMap<String, String>
-
     val loginStateLiveData = MutableLiveData<LoginDataState>()
 
 
@@ -30,9 +28,7 @@ class LoginViewModel @Inject constructor(private val loginUserRepository: LoginU
 
     fun doLogin(userEmail: String, password: String) {
         if (areUserCredentialsValid(userEmail, password)) {
-            map = HashMap()
-            map[USERNAME] = userEmail
-            map[PASSWORD] = password
+
             viewModelScope.launch {
 
                 runCatching {
@@ -57,7 +53,7 @@ class LoginViewModel @Inject constructor(private val loginUserRepository: LoginU
     }
 
 
-    private fun areUserCredentialsValid(userEmail: String, password: String): Boolean {
+    fun areUserCredentialsValid(userEmail: String, password: String): Boolean {
         return if (!LoginValidator.isEmailValid(userEmail)) {
             loginStateLiveData.postValue(LoginDataState.InValidEmailState)
             false
@@ -68,12 +64,6 @@ class LoginViewModel @Inject constructor(private val loginUserRepository: LoginU
             loginStateLiveData.postValue(LoginDataState.ValidCredentialsState)
             true
         }
-    }
-
-
-    companion object {
-        const val USERNAME = "email"
-        const val PASSWORD = "password"
     }
 
 }
