@@ -93,7 +93,7 @@ class LoginViewModelTest {
         verifyNoMoreInteractions(mockObserverForStates)
     }
 
-
+    @ExperimentalCoroutinesApi
     @Test
     fun testIfEmailAndPasswordValid_DoLogin() {
         // Arrange
@@ -102,7 +102,7 @@ class LoginViewModelTest {
 
         val data = mock<LoginUser>()
 
-        runBlockingTest {
+        coroutineTestRule.testDispatcher.runBlockingTest {
             whenever(
                 loginUserRepository.getLoginUserByCredentials(
                     anyString(),
@@ -124,7 +124,7 @@ class LoginViewModelTest {
         verifyNoMoreInteractions(mockObserverForStates)
     }
 
-
+    @ExperimentalCoroutinesApi
     @Test
     fun testIfEmailAndPasswordValid_ButDoLogin_ForInvalidLoginUser() {
         // Arrange
@@ -133,7 +133,7 @@ class LoginViewModelTest {
 
         //val data = mock<LoginUser>()
 
-        runBlockingTest {
+        coroutineTestRule.testDispatcher.runBlockingTest {
             whenever(
                 loginUserRepository.getLoginUserByCredentials(
                     anyString(),
@@ -155,6 +155,7 @@ class LoginViewModelTest {
         verifyNoMoreInteractions(mockObserverForStates)
     }
 
+    @ExperimentalCoroutinesApi
     @Test
     fun testThrowError_OnLoginFailed() {
         //Arrange
@@ -164,7 +165,7 @@ class LoginViewModelTest {
         // here we can assume any kind of exception, due to that login fails
         val error = RuntimeException()
 
-        runBlocking {
+        coroutineTestRule.testDispatcher.runBlockingTest {
             `when`(
                 loginUserRepository.getLoginUserByCredentials(
                     anyString(),
@@ -187,15 +188,18 @@ class LoginViewModelTest {
     }
 
 
+    @ExperimentalCoroutinesApi
     @Test
     fun testSaveLoginUser(){
 
-            runBlocking {
-
+        coroutineTestRule.testDispatcher.runBlockingTest {
+                //Arrange
                 `when`(loginUserRepository.saveLoginUser()).thenAnswer { listOf<LoginUser>() }
 
+                //Act
                 loginViewModel.saveLoginUser()
 
+                //Assert
                 verify(loginUserRepository, times(1)).saveLoginUser()
             }
 
