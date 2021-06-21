@@ -70,6 +70,21 @@ class LoginViewModelTest {
 
     }
 
+
+    @Test
+    fun testIfPasswordInvalid_ShowPasswordError() {
+        //Arrange
+        `when`(LoginValidator.isEmailValid(anyString())).thenAnswer { true }
+        `when`(LoginValidator.isPasswordValid(anyString())).thenAnswer { false }
+
+        //Act
+        loginViewModel.doLogin(EMAIL, PASSWORD)
+
+        //Assert
+        verify(mockObserverForStates).onChanged(LoginDataState.InValidPasswordState)
+        verifyNoMoreInteractions(mockObserverForStates)
+    }
+
     @After
     @Throws(Exception::class)
     fun tearDownClass() {
